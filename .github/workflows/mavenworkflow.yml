@@ -1,0 +1,35 @@
+  name: Github actions with maven build and deploy
+  on:
+    push:
+      branches:
+        - main
+  jobs:
+    Do-the-travis-thing:
+      runs-on: ubuntu-20.04
+      steps:
+        - name: checkout
+          uses: actions/checkout@v2
+        - name: setup jdk 11
+          uses: actions/setup-java@v2
+          with:
+            java-version: '11'
+            distribution: 'adopt'
+        - name: mysql
+          uses: mirromutth/mysql-action@v1.1
+          with:
+            mysql version: '8.0'
+            #Change this before build, push and or deploy
+            mysql database: 'quickstartdb_test'
+            mysql user: 'Annik'
+            mysql password: 'Flagremus13'
+        - name: Cache Maven packages # cache maven repos to save time on future builds
+          uses: actions/cache@v2
+          with:
+            path: ~/.m2
+            key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+            restore-keys: ${{ runner.os }}-m2 # the action searches for partial matches of the restore keys. When the action finds a partial match, the most recent cache is restored to the path directory.
+        - name: Maven verify
+          run: mvn test
+        - name: Maven deploy
+          #This must be set up in your github account
+          run: mvn -Dremote.user=${{ secrets.REMOTE_USER }} -Dremote.password=${{ secrets.REMOTE_PW }} tomcat7:deploy
