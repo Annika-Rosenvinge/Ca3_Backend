@@ -10,8 +10,10 @@ public class Location implements Serializable {
     @Id
     @Column(name = "wikidata_id", nullable = false, length = 100)
     private Integer id;
+
     @Column(name = "name", nullable = false, length = 100)
     private String name;
+    
     @Column(name = "type", nullable = false, length = 50)
     private String type;
 
