@@ -62,4 +62,12 @@ public class UserFacadeTest {
     }
 
     //write your own tests here
+
+    @Test
+    public void testGetAllUsers(){
+        int expected = 2;
+        int actual = userFacade.getAllUsers().size();
+
+        assertEquals(expected, actual);
+    }
 }

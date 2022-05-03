@@ -2,6 +2,7 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dtos.UserDTO;
 import facades.UserFacade;
 import utils.EMF_Creator;
 
@@ -15,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 import java.awt.*;
+import java.util.List;
 
 @Path("info")
 public class UserResource {
@@ -61,6 +63,16 @@ public class UserResource {
     public String count(){
         //String count =
         return "hej med dig";
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/allUsers")
+    @RolesAllowed("admin")
+    public String getAllUsers(){
+        List<UserDTO>userDTOList = FACADE.getAllUsers();
+
+        return "All users" + userDTOList;
     }
 
 }

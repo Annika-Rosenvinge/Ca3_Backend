@@ -1,8 +1,10 @@
 package rest;
 
+import dtos.UserDTO;
 import entities.Role;
 import entities.User;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.parsing.Parser;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.util.HttpStatus;
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.*;
 import utils.EMF_Creator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
 import java.util.ArrayList;
@@ -89,4 +92,16 @@ public class UserResourceTest {
         System.out.println("Server for testing is up");
         given().when().get("/info").then().statusCode(200);
     }
+
+
+    /*@Test
+    public void testGetAllUsers(){
+        List<UserDTO> userDTOS;
+
+        userDTOS = given()
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(ContentType.JSON)
+                .when()
+                .get("")
+    }*/
 }
