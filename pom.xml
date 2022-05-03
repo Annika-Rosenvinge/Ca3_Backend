@@ -20,7 +20,7 @@
 
         <!-- TODO: Add your own database name -->
         <!-- IMPORTANT-1: The database should exist on your droplet -->
-        <db.name>quickstartdb</db.name>
+        <db.name>timeline</db.name>
     </properties>
 
     <dependencies>
