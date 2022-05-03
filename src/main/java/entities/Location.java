@@ -13,7 +13,7 @@ public class Location implements Serializable {
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
-    
+
     @Column(name = "type", nullable = false, length = 50)
     private String type;
 
