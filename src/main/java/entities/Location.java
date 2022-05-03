@@ -12,6 +12,8 @@ public class Location implements Serializable {
     private Integer id;
     @Column(name = "name", nullable = false, length = 100)
     private String name;
+    @Column(name = "type", nullable = false, length = 50)
+    private String type;
 
     @OneToMany(mappedBy = "location", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Spot> spotList = new ArrayList<>();
