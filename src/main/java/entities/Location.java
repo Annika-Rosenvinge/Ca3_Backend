@@ -20,6 +20,16 @@ public class Location implements Serializable {
     @OneToMany(mappedBy = "location", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Spot> spotList = new ArrayList<>();
 
+    public Location() {
+    }
+
+    public Location(Integer id, String name, String type, List<Spot> spotList) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.spotList = spotList;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -36,6 +46,21 @@ public class Location implements Serializable {
         this.name = name;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public List<Spot> getSpotList() {
+        return spotList;
+    }
+
+    public void setSpotList(List<Spot> spotList) {
+        this.spotList = spotList;
+    }
 
     @Override
     public String toString() {
