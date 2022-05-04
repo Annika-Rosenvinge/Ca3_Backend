@@ -26,6 +26,11 @@ public class Populator {
         userFacade.create(new UserDTO(new User("Hanne", "Abekat1", "hanne@email.dk", admin)));
         userFacade.create(new UserDTO(new User("Klaus", "Sommerfugl24", "Klaus@email.dk", admin)));
         userFacade.create(new UserDTO(new User("Søren", "password1234", "s.ren@mail.com", basic)));
+        //LOCATION
+
+        //TIMELINE
+        //SPOTS
+
     }
     
     public static void main(String[] args) {

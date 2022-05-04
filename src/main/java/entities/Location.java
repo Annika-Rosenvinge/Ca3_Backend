@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 public class Location implements Serializable {
     @Id
-    @Column(name = "wikidata_id", nullable = false, length = 100)
+    @Column(name = "id", nullable = false, length = 100)
     private Integer id;
 
     @Column(name = "name", nullable = false, length = 100)

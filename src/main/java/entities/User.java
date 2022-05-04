@@ -59,7 +59,6 @@ public class User {
         return rolesAsStrings;
     }
 
-    //GETTER AND SETTER
 
     public Integer getId() {
         return id;

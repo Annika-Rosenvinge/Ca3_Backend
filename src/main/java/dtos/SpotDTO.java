@@ -1,47 +1,42 @@
-package entities;
+package dtos;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import entities.Location;
+import entities.Spot;
+import entities.Timeline;
 
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity
-public class Spot  implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+public class SpotDTO {
     private Integer id;
-
-    @Column(name = "name", nullable = false, length = 200)
     private String name;
-
-    @Column(name = "description", length = 10000)
     private String description;
+    private String timestanp;
 
-    @Column(name = "timestamp", length = 100)
-    private String timeStamp;
-
-    @ManyToOne
     private Location location;
-
-    @ManyToOne
     private Timeline timeline;
 
-    //Constructors
-    public Spot(){
+    public SpotDTO(){
 
     }
-    public Spot(String name, String description, String timeStanp, Location location, Timeline timeline){
-        this.name = name;
-        this.description = description;
-        this.timeStamp = timeStanp;
-        this.location = location;
-        this.timeline = timeline;
+
+    public SpotDTO(Spot spot){
+        this.id = spot.getId();
+        this.name = spot.getName();
+        this.description = spot.getDescription();
+        this.timestanp = spot.getTimeStamp();
+        this.location = spot.getLocation();
+        this.timeline = spot.getTimeline();
     }
 
+    public static List<SpotDTO> getDTOS(List <Spot> spot){
+        List<SpotDTO> spotDTOS = new ArrayList<>();
+        if(spot!=null){
+            spot.forEach(s -> spotDTOS.add(new SpotDTO(s)));
+        }
+        return spotDTOS;
+    }
 
-
-
-    //gettere and settere
     public Integer getId() {
         return id;
     }
@@ -66,12 +61,12 @@ public class Spot  implements Serializable {
         this.description = description;
     }
 
-    public String getTimeStamp() {
-        return timeStamp;
+    public String getTimestanp() {
+        return timestanp;
     }
 
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimestanp(String timestanp) {
+        this.timestanp = timestanp;
     }
 
     public Location getLocation() {
@@ -92,12 +87,12 @@ public class Spot  implements Serializable {
 
     @Override
     public String toString() {
-        return "Spot{" +
+        return "SpotDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", timeStamp='" + timeStamp + '\'' +
-                ", location='" + location + '\'' +
+                ", timestanp='" + timestanp + '\'' +
+                ", location=" + location +
                 ", timeline=" + timeline +
                 '}';
     }
