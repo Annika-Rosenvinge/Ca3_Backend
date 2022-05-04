@@ -72,7 +72,7 @@ public class UserResource {
     public String getAllUsers(){
         List<UserDTO>userDTOList = FACADE.getAllUsers();
 
-        return "All users" + userDTOList;
+        return "All users:" + userDTOList;
     }
 
 }

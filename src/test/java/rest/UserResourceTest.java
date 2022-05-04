@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class UserResourceTest {
@@ -93,15 +94,24 @@ public class UserResourceTest {
         given().when().get("/info").then().statusCode(200);
     }
 
-
-    /*@Test
+    @Disabled
+    @Test
+    //HUSK AT TJEKKE SENERE NÅR HJEMMESIDEN KØRER!!!
     public void testGetAllUsers(){
-        List<UserDTO> userDTOS;
+        List<UserDTO> userDTOList;
 
-        userDTOS = given()
+        userDTOList = given()
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(ContentType.JSON)
                 .when()
-                .get("")
-    }*/
+                .get("/info/all")
+                .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .jsonPath()
+                .getList("", UserDTO.class);
+
+                assertEquals(2, userDTOList.size());
+    }
 }
