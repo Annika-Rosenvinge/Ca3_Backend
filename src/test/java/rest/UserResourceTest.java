@@ -1,8 +1,10 @@
 package rest;
 
+import dtos.UserDTO;
 import entities.Role;
 import entities.User;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.parsing.Parser;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.util.HttpStatus;
@@ -12,12 +14,14 @@ import org.junit.jupiter.api.*;
 import utils.EMF_Creator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class UserResourceTest {
@@ -88,5 +92,26 @@ public class UserResourceTest {
     public void testServerIsUp(){
         System.out.println("Server for testing is up");
         given().when().get("/info").then().statusCode(200);
+    }
+
+    @Disabled
+    @Test
+    //HUSK AT TJEKKE SENERE NÅR HJEMMESIDEN KØRER!!!
+    public void testGetAllUsers(){
+        List<UserDTO> userDTOList;
+
+        userDTOList = given()
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(ContentType.JSON)
+                .when()
+                .get("/info/all")
+                .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .jsonPath()
+                .getList("", UserDTO.class);
+
+                assertEquals(2, userDTOList.size());
     }
 }
