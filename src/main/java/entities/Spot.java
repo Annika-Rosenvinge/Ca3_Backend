@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name = "Spot")
+@Table(name = "spot")
 public class Spot  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public class Spot  implements Serializable {
     @Column(name = "description", length = 10000)
     private String description;
 
-    @Column(name = "timestamp", length = 100)
+    @Column(name = "timestamp")
     private LocalDate timeStamp;
 
     @ManyToOne
@@ -100,7 +100,7 @@ public class Spot  implements Serializable {
                 ", description='" + description + '\'' +
                 ", timeStamp='" + timeStamp + '\'' +
                 ", location='" + location + '\'' +
-                ", timeline=" + timeline +
+                ", timeline="  + timeline +
                 '}';
     }
 }

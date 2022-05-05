@@ -31,7 +31,7 @@ public class UserFacade{
     }
 
     public UserDTO create(UserDTO userDTO){
-        User user = new User(userDTO.getUserName(), userDTO.getEmail(), userDTO.getPassword(), userDTO.getRoleList());
+        User user = new User(userDTO.getUserName(), userDTO.getPassword(), userDTO.getEmail(), userDTO.getRoleList());
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
