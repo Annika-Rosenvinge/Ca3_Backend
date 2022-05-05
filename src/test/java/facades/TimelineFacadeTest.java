@@ -10,6 +10,8 @@ import utils.EMF_Creator;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,8 +48,9 @@ public class TimelineFacadeTest {
         Location location1 = new Location("Q2", "Ingenmandsland", "Country");
 
         Timeline timeline = new Timeline("First", "Det her er den første tidslinje", "1990", "2000", user);
-        Spot spot = new Spot("New Years eve", "The night between 1999 and 2000", "31/12/1999", location, timeline);
-        Spot spot1 = new Spot("Christmas", "", "24/12/1991", location1, timeline);
+        Spot spot = new Spot("New Years eve", "The night between 1999 and 2000", LocalDate.of(1999, Month.DECEMBER, 31), location, timeline);
+        Spot spot1 = new Spot("Christmas", "", LocalDate.of(1999, Month.DECEMBER, 24), location1, timeline);
+
         try{
             em.getTransaction().begin();
             em.createNamedQuery("Timeline.deleteAllRows").executeUpdate();
