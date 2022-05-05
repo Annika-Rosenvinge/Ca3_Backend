@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "Location")
 public class Location implements Serializable {
     @Id
     @Column(name = "id", nullable = false, length = 100)
