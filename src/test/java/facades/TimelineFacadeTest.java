@@ -24,7 +24,7 @@ public class TimelineFacadeTest {
     }
 
     @BeforeAll
-    public void setUpClass(){
+    static void setUpClass(){
         emf = EMF_Creator.createEntityManagerFactoryForTest();
         timelineFacade = TimelineFacade.getTimelineFacade(emf);
     }
