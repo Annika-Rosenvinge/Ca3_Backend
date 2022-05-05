@@ -52,6 +52,8 @@ public class TimelineFacadeTest {
         try{
             em.getTransaction().begin();
             em.createNamedQuery("Timeline.deleteAllRows").executeUpdate();
+            em.createNamedQuery("User.deleteAllRows").executeUpdate();
+            //mangler for spot og location
             em.persist(user);
             em.persist(location);
             em.persist(location1);
@@ -66,6 +68,7 @@ public class TimelineFacadeTest {
     }
 
     @Test
+    //skal rettes til
     public void createTimelineTest(){
         String name = "New Timeline";
         String description = "The newest timeline";

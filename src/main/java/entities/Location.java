@@ -1,5 +1,7 @@
 package entities;
 
+import dtos.LocationDTO;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,6 +37,12 @@ public class Location implements Serializable {
         this.id = id;
         this.name = name;
         this.type = type;
+    }
+
+    public Location(LocationDTO locationDTO) {
+        this.id = locationDTO.getId();
+        this.name = locationDTO.getName();
+        this.type = locationDTO.getType();
     }
 
     public String getId() {

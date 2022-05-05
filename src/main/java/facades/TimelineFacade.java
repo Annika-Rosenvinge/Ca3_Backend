@@ -30,10 +30,10 @@ public class TimelineFacade {
         return emf.createEntityManager();
     }
 
-    //Test mangler
+    //Test er lavet, men skal rettes ind
     public TimelineDTO createTimeline(TimelineDTO timelineDTO){
         Timeline timeline = new Timeline(timelineDTO.getName(), timelineDTO.getDescription(), timelineDTO.getStartDate(),
-                timelineDTO.getEndDate(), timelineDTO.getSpotList(), timelineDTO.getUser());
+                timelineDTO.getEndDate(), timelineDTO.getUser());
         EntityManager em = getEntityManager();
         try{
             em.getTransaction().begin();
