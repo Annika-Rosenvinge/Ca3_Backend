@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 
 @Entity
@@ -18,7 +19,7 @@ public class Spot  implements Serializable {
     private String description;
 
     @Column(name = "timestamp", length = 100)
-    private String timeStamp;
+    private LocalDate timeStamp;
 
     @ManyToOne
     private Location location;
@@ -30,7 +31,7 @@ public class Spot  implements Serializable {
     public Spot(){
 
     }
-    public Spot(String name, String description, String timeStamp, Location location, Timeline timeline){
+    public Spot(String name, String description, LocalDate timeStamp, Location location, Timeline timeline){
         this.name = name;
         this.description = description;
         this.timeStamp = timeStamp;
@@ -66,11 +67,11 @@ public class Spot  implements Serializable {
         this.description = description;
     }
 
-    public String getTimeStamp() {
+    public LocalDate getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(String timeStamp) {
+    public void setTimeStamp(LocalDate timeStamp) {
         this.timeStamp = timeStamp;
     }
 

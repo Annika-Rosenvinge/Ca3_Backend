@@ -4,6 +4,7 @@ import entities.Location;
 import entities.Spot;
 import entities.Timeline;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class SpotDTO {
     private Integer id;
     private String name;
     private String description;
-    private String timestamp;
+    private LocalDate timestamp;
 
     private Location location;
     private Timeline timeline;
@@ -61,11 +62,11 @@ public class SpotDTO {
         this.description = description;
     }
 
-    public String getTimestamp() {
+    public LocalDate getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(LocalDate timestamp) {
         this.timestamp = timestamp;
     }
 
