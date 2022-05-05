@@ -9,7 +9,7 @@ import java.util.List;
 public class Location implements Serializable {
     @Id
     @Column(name = "id", nullable = false, length = 100)
-    private Integer id;
+    private String id;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -23,18 +23,24 @@ public class Location implements Serializable {
     public Location() {
     }
 
-    public Location(Integer id, String name, String type, List<Spot> spotList) {
+    public Location(String id, String name, String type, List<Spot> spotList) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.spotList = spotList;
     }
 
-    public Integer getId() {
+    public Location(String id, String name, String type){
+        this.id = id;
+        this.name = name;
+        this.type = type;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -30,10 +30,10 @@ public class Spot  implements Serializable {
     public Spot(){
 
     }
-    public Spot(String name, String description, String timeStanp, Location location, Timeline timeline){
+    public Spot(String name, String description, String timeStamp, Location location, Timeline timeline){
         this.name = name;
         this.description = description;
-        this.timeStamp = timeStanp;
+        this.timeStamp = timeStamp;
         this.location = location;
         this.timeline = timeline;
     }

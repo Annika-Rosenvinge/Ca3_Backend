@@ -11,7 +11,7 @@ public class SpotDTO {
     private Integer id;
     private String name;
     private String description;
-    private String timestanp;
+    private String timestamp;
 
     private Location location;
     private Timeline timeline;
@@ -24,7 +24,7 @@ public class SpotDTO {
         this.id = spot.getId();
         this.name = spot.getName();
         this.description = spot.getDescription();
-        this.timestanp = spot.getTimeStamp();
+        this.timestamp = spot.getTimeStamp();
         this.location = spot.getLocation();
         this.timeline = spot.getTimeline();
     }
@@ -61,12 +61,12 @@ public class SpotDTO {
         this.description = description;
     }
 
-    public String getTimestanp() {
-        return timestanp;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimestanp(String timestanp) {
-        this.timestanp = timestanp;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     public Location getLocation() {
@@ -91,7 +91,7 @@ public class SpotDTO {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", timestanp='" + timestanp + '\'' +
+                ", timestamp='" + timestamp + '\'' +
                 ", location=" + location +
                 ", timeline=" + timeline +
                 '}';

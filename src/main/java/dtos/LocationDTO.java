@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocationDTO {
-    private Integer id;
+    private String id;
     private String name;
     private String type;
     private List<Spot> spots = new ArrayList<>();
@@ -16,7 +16,7 @@ public class LocationDTO {
     public LocationDTO() {
     }
 
-    public LocationDTO(Integer id, String name, String type, List<Spot> spots) {
+    public LocationDTO(String id, String name, String type, List<Spot> spots) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -38,11 +38,11 @@ public class LocationDTO {
         return locationDTOS;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
