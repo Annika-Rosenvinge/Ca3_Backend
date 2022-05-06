@@ -57,10 +57,21 @@ public class TimelineFacade {
     }*/
 
     //test mangler
+    //den skal specificeres efter bruger
+    /*getAllTimelines(user)
+    *user.getid
+    * find bruger ud fra id'et
+    * find timelines ud fra bruger id
+    * typed query
+    * list = query.get result
+    * return
+    * */
     public List<TimelineDTO> getAll(){
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Timeline> query = em.createQuery("SELECT t FROM Timeline t", Timeline.class);
-        List<Timeline> timelines = query.getResultList();
+        //TypedQuery<Timeline> query = em.createQuery("SELECT t FROM Timeline t", Timeline.class);
+        int id = 1;
+        TypedQuery<Timeline> query1 = em.createQuery("SELECT t FROM Timeline t WHERE t.user.id = :id", Timeline.class);
+        List<Timeline> timelines = query1.getResultList();
         return TimelineDTO.getDtos(timelines);
     }
 

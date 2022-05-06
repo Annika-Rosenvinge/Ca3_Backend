@@ -25,6 +25,9 @@ public class SpotFacade {
         return emf.createEntityManager();
     }
 
+    //skal skrives om
+    //for at kunne oprette et spot, så skal der være en timeline med som parameter
+    //for ellers så kan spottet ikke oprettes (den skal bruge id'et men hele entitien skal skrives ind)
     public SpotDTO createSpot(SpotDTO spotDTO){
         Spot spot = new Spot(spotDTO.getName(), spotDTO.getDescription(),spotDTO.getTimestamp(), spotDTO.getLocation(), spotDTO.getTimeline());
         EntityManager em = getEntityManager();
@@ -37,5 +40,19 @@ public class SpotFacade {
         }
         return new SpotDTO(spot);
     }
+    /*PSEUDO KODE
+    * Create spot (Spot spot, Timeline timeline)
+    *Spot spot = new spot...
+    * Timeline timline = new Timeline
+    * Find timeline, med entitymanager.
+    * entity manager
+    * try
+    * begin
+    * persist
+    * commit
+    * finally
+    * close
+    * return spot
+    * */
 
 }
