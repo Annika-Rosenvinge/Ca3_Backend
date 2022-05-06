@@ -2,6 +2,7 @@ package facades;
 
 import dtos.TimelineDTO;
 import entities.Timeline;
+import entities.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -66,13 +67,28 @@ public class TimelineFacade {
     * list = query.get result
     * return
     * */
-    public List<TimelineDTO> getAll(){
+    /*public List<TimelineDTO> getAll(){
         EntityManager em = emf.createEntityManager();
         //TypedQuery<Timeline> query = em.createQuery("SELECT t FROM Timeline t", Timeline.class);
         int id = 1;
         TypedQuery<Timeline> query1 = em.createQuery("SELECT t FROM Timeline t WHERE t.user.id = :id", Timeline.class);
         List<Timeline> timelines = query1.getResultList();
         return TimelineDTO.getDtos(timelines);
+    }*/
+
+    //Test er lavet og virker
+    public List<TimelineDTO> getAll(User user){
+        EntityManager em = emf.createEntityManager();
+        try {
+            User Uid = em.find(User.class, user.getId());
+            int id = Uid.getId();
+            TypedQuery<Timeline> query = em.createQuery("SELECT t FROM Timeline t WHERE t.user.id = :id", Timeline.class);
+            query.setParameter("id", id);
+            List<Timeline> timelines = query.getResultList();
+            return TimelineDTO.getDtos(timelines);
+        }finally {
+            em.close();
+        }
     }
 
     //test mangler
