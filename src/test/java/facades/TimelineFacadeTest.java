@@ -46,21 +46,19 @@ public class TimelineFacadeTest {
         Location location = new Location("Q1", "La La Land", "Country");
         Location location1 = new Location("Q2", "Ingenmandsland", "Country");
 
-        Timeline timeline = new Timeline("First", "Det her er den første tidslinje", "1990", "2000", user);
-        Spot spot = new Spot("New Years eve", "The night between 1999 and 2000", LocalDate.of(1999, Month.DECEMBER, 31), location, timeline);
-        Spot spot1 = new Spot("Christmas", "", LocalDate.of(1999, Month.DECEMBER, 24), location1, timeline);
+        Timeline timeline = new Timeline("First", "Det her er den første tidslinje",
+                "1990", "2000", user);
 
         try{
             em.getTransaction().begin();
             em.createNamedQuery("Timeline.deleteAllRows").executeUpdate();
             em.createNamedQuery("User.deleteAllRows").executeUpdate();
-            //mangler for spot og location
+            em.createNamedQuery("Location.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Role.deleteAllRows").executeUpdate();
             em.persist(user);
             em.persist(location);
             em.persist(location1);
             em.persist(timeline);
-            em.persist(spot);
-            em.persist(spot1);
             em.getTransaction().commit();
         }
         finally {
@@ -68,7 +66,7 @@ public class TimelineFacadeTest {
         }
     }
 
-    @Disabled
+
     @Test
     //skal rettes til
     public void createTimelineTest(){
@@ -79,6 +77,7 @@ public class TimelineFacadeTest {
         List<Role> basic = new ArrayList<>();
         basic.add(new Role("test"));
         User user = new User("Hans", "pass", "email1", basic);
+        user.setId(1);
         Timeline timeline = new Timeline(name, description, startDate, endDate, user);
         TimelineDTO timelineDTO = new TimelineDTO(timeline);
 

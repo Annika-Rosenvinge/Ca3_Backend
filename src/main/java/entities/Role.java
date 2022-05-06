@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
+@NamedQueries(@NamedQuery(name = "Role.deleteAllRows", query = "DELETE FROM Role"))
 @Table(name = "Role")
 public class Role implements Serializable {
 

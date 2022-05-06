@@ -3,19 +3,19 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dtos.UserDTO;
+import entities.Role;
 import facades.UserFacade;
 import utils.EMF_Creator;
 
 import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManagerFactory;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Path("info")
@@ -35,6 +35,37 @@ public class UserResource {
     @Produces({MediaType.APPLICATION_JSON})
     public String helloResource(){
         return "{\"msg\":\"Hello World\"}";
+    }
+
+
+    //test er ikke lavet
+    @POST
+    @Path("/createuser")
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public String createUser(String user){
+        UserDTO userDTO = GSON.fromJson(user,UserDTO.class);
+        List<Role> roles = new ArrayList<>();
+        Role role = new Role("basic");
+        roles.add(role);
+        userDTO.setRoleList(roles);
+        UserDTO createdUser = FACADE.create(userDTO);
+        return GSON.toJson(createdUser);
+    }
+
+    @POST
+    @Path("/createadmin")
+    @RolesAllowed("admin")
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public String createAdmin(String user){
+        UserDTO userDTO = GSON.fromJson(user, UserDTO.class);
+        List<Role> roles = new ArrayList<>();
+        Role role = new Role("admin");
+        roles.add(role);
+        userDTO.setRoleList(roles);
+        UserDTO createdUser = FACADE.create(userDTO);
+        return GSON.toJson(createdUser);
     }
 
     @GET

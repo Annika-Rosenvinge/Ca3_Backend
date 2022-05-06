@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedQueries(@NamedQuery(name = "Location.deleteAllRows", query = "DELETE FROM Location "))
 @Table(name = "Location")
 public class Location implements Serializable {
     @Id
