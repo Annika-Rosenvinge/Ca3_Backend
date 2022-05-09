@@ -8,6 +8,7 @@ import javax.persistence.TypedQuery;
 //import errorhandling.RenameMeNotFoundException;
 import dtos.UserDTO;
 import entities.User;
+import errorhandling.NotFoundException;
 import security.errorhandling.AuthenticationException;
 import utils.EMF_Creator;
 
@@ -90,4 +91,15 @@ public class UserFacade{
         return user;
     }
 
+
+    public User delete(int id) throws NotFoundException {
+        EntityManager em = getEntityManager();
+        User user = em.find(User.class, id);
+        if (user == null)
+            throw new NotFoundException("Could not remove Profile with id: "+id);
+        em.getTransaction().begin();
+        em.remove(user);
+        em.getTransaction().commit();
+        return user;
+    }
 }
