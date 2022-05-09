@@ -25,7 +25,7 @@ public class Timeline implements Serializable {
     @Column(name = "endDate", nullable = false, length = 30)
     private String endDate;
 
-    @OneToMany(mappedBy = "timeline", cascade = {CascadeType.PERSIST, CascadeType.DETACH})
+    @OneToMany(mappedBy = "timeline", cascade = {CascadeType.PERSIST})
     private List<Spot> spotList = new ArrayList<>();
 
     @ManyToOne
