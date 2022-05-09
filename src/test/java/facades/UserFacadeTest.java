@@ -58,16 +58,8 @@ public class UserFacadeTest {
     @Test
     public void testCount() throws Exception{
 
-       assertEquals(2, userFacade.getUserCount());
+        assertEquals(2, userFacade.getUserCount());
     }
 
     //write your own tests here
-
-    @Test
-    public void testGetAllUsers(){
-        int expected = 2;
-        int actual = userFacade.getAllUsers().size();
-
-        assertEquals(expected, actual);
-    }
 }
