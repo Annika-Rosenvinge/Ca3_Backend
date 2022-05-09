@@ -91,7 +91,7 @@ public class UserFacade{
         return user;
     }
 
-<<<<<<< HEAD
+
 
     public User delete(int id) throws NotFoundException {
         EntityManager em = getEntityManager();
@@ -103,7 +103,7 @@ public class UserFacade{
         em.getTransaction().commit();
         return user;
     }
-=======
+
     public List<UserDTO> getAllUsers(){
         EntityManager em = emf.createEntityManager();
         TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
@@ -111,5 +111,5 @@ public class UserFacade{
         return UserDTO.getDtos(userList);
     }
 
->>>>>>> main
+
 }
