@@ -3,6 +3,7 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dtos.TimelineDTO;
+import entities.Timeline;
 import facades.TimelineFacade;
 import utils.EMF_Creator;
 
@@ -40,9 +41,9 @@ public class TimelineResource {
     @DELETE
     @Path("delete/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    @RolesAllowed("admin")
+    @RolesAllowed("admin")//admin or user?
     public Response deleteTimeline(@PathParam("id") int id) throws NotFoundException, errorhandling.NotFoundException {
-        TimelineDTO tlDTO = new TimelineDTO(FACADE.deleteTimeline(id));
+        TimelineDTO tlDTO = FACADE.deleteTimeline(id);
         return Response.ok().entity(GSON.toJson(tlDTO)).build();
     }
 }

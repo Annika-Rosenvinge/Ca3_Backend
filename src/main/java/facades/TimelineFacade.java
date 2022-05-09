@@ -88,7 +88,7 @@ public class TimelineFacade {
     }
 
     //delete timeline ()
-    public Timeline deleteTimeline(int id) throws NotFoundException {
+    public TimelineDTO deleteTimeline(int id) throws NotFoundException {
         EntityManager em = getEntityManager();
         Timeline tl = em.find(Timeline.class, id);
         if (tl == null)
@@ -96,7 +96,7 @@ public class TimelineFacade {
         em.getTransaction().begin();
         em.remove(tl);
         em.getTransaction().commit();
-        return tl;
+        return new TimelineDTO(tl);
     }
 }
 
