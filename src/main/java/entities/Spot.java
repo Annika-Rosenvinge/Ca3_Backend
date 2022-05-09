@@ -6,7 +6,8 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name = "spot")
+@NamedQueries(@NamedQuery(name = "Spot.deleteAllRows", query = "DELETE FROM Spot"))
+@Table(name = "Spot")
 public class Spot  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

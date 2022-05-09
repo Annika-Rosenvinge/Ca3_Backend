@@ -37,7 +37,6 @@ public class TimelineResource {
         return GSON.toJson(createdTimeline);
 
     }
-
     @DELETE
     @Path("delete/{id}")
     @Produces({MediaType.APPLICATION_JSON})
@@ -46,5 +45,7 @@ public class TimelineResource {
         TimelineDTO tlDTO = new TimelineDTO(FACADE.deleteTimeline(id));
         return Response.ok().entity(GSON.toJson(tlDTO)).build();
     }
-
 }
+
+
+
