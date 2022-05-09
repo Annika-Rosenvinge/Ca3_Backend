@@ -16,7 +16,7 @@ public class Role implements Serializable {
     @Column(name = "role_name", updatable = true, nullable = false)
     private String role;
 
-    @ManyToMany (mappedBy = "roleList")
+    @ManyToMany (mappedBy = "roleList", cascade = {CascadeType.PERSIST, CascadeType.DETACH})
     private List<User> userList;
 
     public Role(){

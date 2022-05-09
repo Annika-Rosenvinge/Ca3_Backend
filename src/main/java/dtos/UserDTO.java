@@ -1,7 +1,6 @@
 package dtos;
 
 import entities.Role;
-import entities.Timeline;
 import entities.User;
 
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ public class UserDTO {
     private String password;
     private String email;
     private List<Role> roleList;
-    private List<Timeline> timeline;
 
     public UserDTO(){
 
@@ -25,7 +23,6 @@ public class UserDTO {
         this.password = user.getPassword();
         this.email = user.getEmail();
         this.roleList = user.getRoleList();
-        this.timeline = user.getTimelinelist();
     }
 
     public static List<UserDTO> getDtos(List<User> user) {
@@ -76,15 +73,11 @@ public class UserDTO {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
+    public String toString(){
         return "UserDTO{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", roleList=" + roleList +
-                ", timeline=" + timeline +
-                '}';
+                "id:" + id +
+                ", username:" + userName +
+                ", password:" + password +
+                ", email:" + email + "}";
     }
 }

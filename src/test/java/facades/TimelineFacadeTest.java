@@ -51,9 +51,10 @@ public class TimelineFacadeTest {
 
         try{
             em.getTransaction().begin();
+            em.createNamedQuery("Spot.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Location.deleteAllRows").executeUpdate();
             em.createNamedQuery("Timeline.deleteAllRows").executeUpdate();
             em.createNamedQuery("User.deleteAllRows").executeUpdate();
-            em.createNamedQuery("Location.deleteAllRows").executeUpdate();
             em.createNamedQuery("Role.deleteAllRows").executeUpdate();
             em.persist(user);
             em.persist(location);
