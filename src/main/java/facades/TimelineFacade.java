@@ -94,9 +94,6 @@ public class TimelineFacade {
         Timeline tl = em.find(Timeline.class, id);
         if (tl == null)
             throw new NotFoundException("Could not find Timeline with id: "+id);
-        //timeline can potentially have relations to spot entities. These relations should also be removed?
-        //make a method in the owning side entity that can delete the link.
-        //eks: tl.removeAllSpots
         for (Spot spot :tl.getSpotList()) {
         tl.removeSpot(em.find(Spot.class, spot.getId()));// dont need exception
         }
