@@ -11,11 +11,13 @@ public class UserPrincipal implements Principal {
 
   private String username;
   private List<String> roles = new ArrayList<>();
+  private int id;
 
   /* Create a UserPrincipal, given the Entity class User*/
   public UserPrincipal(User user) {
     this.username = user.getUserName();
     this.roles = user.getRolesAsStrings();
+    this.id = user.getId();
   }
 
   public UserPrincipal(String username, String[] roles) {
@@ -27,6 +29,10 @@ public class UserPrincipal implements Principal {
   @Override
   public String getName() {
     return username;
+  }
+  
+  public Integer getId(){
+    return id;
   }
 
   public boolean isUserInRole(String role) {

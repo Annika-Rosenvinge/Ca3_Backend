@@ -32,7 +32,7 @@ public class TimelineFacade {
     }
 
     //Test er lavet, men skal rettes ind
-    public TimelineDTO createTimeline(TimelineDTO timelineDTO){
+    public TimelineDTO createTimeline(TimelineDTO timelineDTO) throws IllegalStateException{
         Timeline timeline = new Timeline(timelineDTO.getName(), timelineDTO.getDescription(), timelineDTO.getStartDate(),
                 timelineDTO.getEndDate(), timelineDTO.getUser());
         EntityManager em = getEntityManager();

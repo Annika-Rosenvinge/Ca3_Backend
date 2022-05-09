@@ -40,7 +40,11 @@ public class UserFacadeTest {
         basic.add(new Role("basic"));
         try {
             em.getTransaction().begin();
+            em.createNamedQuery("Spot.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Location.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Timeline.deleteAllRows").executeUpdate();
             em.createNamedQuery("User.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Role.deleteAllRows").executeUpdate();
             em.persist(new User("Bente", "h", "k2", admin));
             em.persist(new User("Poul", "e", "k1", basic));
             em.getTransaction().commit();
