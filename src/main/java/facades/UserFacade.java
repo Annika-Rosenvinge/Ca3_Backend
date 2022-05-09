@@ -32,7 +32,7 @@ public class UserFacade{
     }
 
     public UserDTO create(UserDTO userDTO){
-        User user = new User(userDTO.getUserName(), userDTO.getEmail(), userDTO.getPassword(), userDTO.getRoleList());
+        User user = new User(userDTO.getUserName(), userDTO.getPassword(), userDTO.getEmail(), userDTO.getRoleList());
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
@@ -91,6 +91,7 @@ public class UserFacade{
         return user;
     }
 
+<<<<<<< HEAD
 
     public User delete(int id) throws NotFoundException {
         EntityManager em = getEntityManager();
@@ -102,4 +103,13 @@ public class UserFacade{
         em.getTransaction().commit();
         return user;
     }
+=======
+    public List<UserDTO> getAllUsers(){
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
+        List<User> userList = query.getResultList();
+        return UserDTO.getDtos(userList);
+    }
+
+>>>>>>> main
 }

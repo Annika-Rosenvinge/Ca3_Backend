@@ -27,6 +27,9 @@ public class User {
     @ManyToMany
     private List<Role> roleList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<Timeline> timelinelist;
+
     public User(){
 
     }
@@ -38,10 +41,16 @@ public class User {
         this.email = email;
     }
 
-    public User(String userName, String password, String email, List<Role> roleList ){
+    public User(String userName, String password, String email, List<Role> roleList){
         this.userName = userName;
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
         this.email = email;
+    }
+    public User(String userName, String password, String email, List<Role> roleList, List<Timeline> timelinelist){
+        this.userName = userName;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+        this.email = email;
+        this.timelinelist = timelinelist;
     }
 
     public boolean verifyPassword(String pw) {
@@ -59,7 +68,13 @@ public class User {
         return rolesAsStrings;
     }
 
-    //GETTER AND SETTER
+    public List<Timeline> getTimelinelist() {
+        return timelinelist;
+    }
+
+    public void setTimelinelist(List<Timeline> timelinelist) {
+        this.timelinelist = timelinelist;
+    }
 
     public Integer getId() {
         return id;
@@ -101,5 +116,15 @@ public class User {
         this.roleList = roleList;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", roleList=" + roleList +
+                ", timelinelist=" + timelinelist +
+                '}';
+    }
 }

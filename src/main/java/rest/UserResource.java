@@ -11,6 +11,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.awt.*;
+import java.util.List;
 
 @Path("info")
 public class UserResource {
@@ -59,6 +60,7 @@ public class UserResource {
         return "hej med dig";
     }
 
+
     @DELETE
     @Path("{id}")
     @Produces({MediaType.APPLICATION_JSON})
@@ -66,6 +68,16 @@ public class UserResource {
     public Response delete(@PathParam("id") int id) throws NotFoundException, errorhandling.NotFoundException {
         UserDTO userDTO = new UserDTO(FACADE.delete(id));
         return Response.ok().entity(GSON.toJson(userDTO)).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/allUsers")
+    @RolesAllowed("admin")
+    public String getAllUsers(){
+        List<UserDTO>userDTOList = FACADE.getAllUsers();
+        return "All users:" + userDTOList;
+
     }
 
 }
