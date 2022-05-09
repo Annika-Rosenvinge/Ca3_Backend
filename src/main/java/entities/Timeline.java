@@ -129,4 +129,7 @@ public class Timeline implements Serializable {
                 ", user=" + user +
                 '}';
     }
+
+    public void removeSpot(Spot spot) {//skal laves
+    }
 }

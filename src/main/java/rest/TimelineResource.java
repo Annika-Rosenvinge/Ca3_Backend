@@ -3,7 +3,6 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dtos.TimelineDTO;
-import entities.Timeline;
 import facades.TimelineFacade;
 import utils.EMF_Creator;
 
@@ -15,7 +14,6 @@ import javax.ws.rs.core.*;
 @Path("timeline")
 public class TimelineResource {
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
-
     private static final TimelineFacade FACADE = TimelineFacade.getTimelineFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
@@ -38,6 +36,7 @@ public class TimelineResource {
         return GSON.toJson(createdTimeline);
 
     }
+    //ikke testet
     @DELETE
     @Path("delete/{id}")
     @Produces({MediaType.APPLICATION_JSON})

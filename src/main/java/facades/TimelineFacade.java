@@ -1,6 +1,7 @@
 package facades;
 
 import dtos.TimelineDTO;
+import entities.Spot;
 import entities.Timeline;
 import entities.User;
 import errorhandling.NotFoundException;
@@ -87,13 +88,20 @@ public class TimelineFacade {
         }
     }
 
-    //delete timeline ()
+    //mangler test
     public TimelineDTO deleteTimeline(int id) throws NotFoundException {
         EntityManager em = getEntityManager();
         Timeline tl = em.find(Timeline.class, id);
         if (tl == null)
-            throw new NotFoundException("Could not remove Timeline with id: "+id);
+            throw new NotFoundException("Could not find Timeline with id: "+id);
+        //timeline can potentially have relations to spot entities. These relations should also be removed?
+        //make a method in the owning side entity that can delete the link.
+        //eks: tl.removeAllSpots
+        for (Spot spot :tl.getSpotList()) {
+        tl.removeSpot(em.find(Spot.class, spot.getId()));// dont need exception
+        }
         em.getTransaction().begin();
+        em.merge(tl);//removes relations.  OPS: location should also be removed if it has relation to spot/s. Also relation to user.
         em.remove(tl);
         em.getTransaction().commit();
         return new TimelineDTO(tl);
