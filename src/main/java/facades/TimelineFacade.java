@@ -46,27 +46,15 @@ public class TimelineFacade {
         return new TimelineDTO(timeline);
     }
 
-    //Det er vigtigt at denne her kan sortere i timestamps, så man ikke skal skrives spots ind i rækkefølge
-    /*public TimelineDTO sortSpotsByTimeStamp(){
-    }
     //Sprint 2
-    public TimelineDTO deleteTimeline(Long id){
+    /*public TimelineDTO deleteTimeline(Integer id){
+
     }*/
 
-    //test mangler
-    //den skal specificeres efter bruger
-    /*getAllTimelines(user)
-     *user.getid
-     * find bruger ud fra id'et
-     * find timelines ud fra bruger id
-     * typed query
-     * list = query.get result
-     * return
-     * */
+    //denne metode gemmes til rapporten
     /*public List<TimelineDTO> getAll(){
         EntityManager em = emf.createEntityManager();
         //TypedQuery<Timeline> query = em.createQuery("SELECT t FROM Timeline t", Timeline.class);
-        int id = 1;
         TypedQuery<Timeline> query1 = em.createQuery("SELECT t FROM Timeline t WHERE t.user.id = :id", Timeline.class);
         List<Timeline> timelines = query1.getResultList();
         return TimelineDTO.getDtos(timelines);

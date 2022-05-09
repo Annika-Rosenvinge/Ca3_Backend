@@ -1,11 +1,14 @@
 package entities;
 
+import dtos.LocationDTO;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedQueries(@NamedQuery(name = "Location.deleteAllRows", query = "DELETE FROM Location "))
 @Table(name = "Location")
 public class Location implements Serializable {
     @Id
@@ -35,6 +38,12 @@ public class Location implements Serializable {
         this.id = id;
         this.name = name;
         this.type = type;
+    }
+
+    public Location(LocationDTO locationDTO) {
+        this.id = locationDTO.getId();
+        this.name = locationDTO.getName();
+        this.type = locationDTO.getType();
     }
 
     public String getId() {

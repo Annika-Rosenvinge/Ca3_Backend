@@ -1,15 +1,17 @@
 package entities;
 
+import dtos.UserDTO;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @NamedQuery(name = "User.deleteAllRows", query = "DELETE FROM User")
-@Table(name = "USER")
-public class User {
+@Table(name = "User")
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", updatable = false, nullable = false)
@@ -51,6 +53,13 @@ public class User {
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
         this.email = email;
         this.timelinelist = timelinelist;
+    }
+
+    public User(UserDTO userDTO) {
+        this.id = userDTO.getId();
+        this.userName = userDTO.getUserName();
+        this.password = userDTO.getPassword();
+        this.email = userDTO.getEmail();
     }
 
     public boolean verifyPassword(String pw) {
