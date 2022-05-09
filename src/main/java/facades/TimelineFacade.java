@@ -3,6 +3,7 @@ package facades;
 import dtos.TimelineDTO;
 import entities.Timeline;
 import entities.User;
+import errorhandling.NotFoundException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -97,5 +98,20 @@ public class TimelineFacade {
             em.close();
         }
 
+    }
+
+
+
+
+    //delete timeline ()
+    public Timeline deleteTimeline(int id) throws NotFoundException {
+        EntityManager em = getEntityManager();
+        Timeline tl = em.find(Timeline.class, id);
+        if (tl == null)
+            throw new NotFoundException("Could not remove Timeline with id: "+id);
+        em.getTransaction().begin();
+        em.remove(tl);
+        em.getTransaction().commit();
+        return tl;
     }
 }

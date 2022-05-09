@@ -2,6 +2,7 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dtos.TimelineDTO;
 import dtos.UserDTO;
 import facades.UserFacade;
 import utils.EMF_Creator;
@@ -79,5 +80,6 @@ public class UserResource {
         return "All users:" + userDTOList;
 
     }
+
 
 }
