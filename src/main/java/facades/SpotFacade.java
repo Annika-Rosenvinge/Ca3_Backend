@@ -69,7 +69,6 @@ public class SpotFacade {
         //sort the spots after date the oldest first - find the correct way for LocalDate
         //return the list
 
-
      return null;
     }
 

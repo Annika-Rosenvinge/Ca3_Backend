@@ -105,4 +105,25 @@ public class SpotFacadeTest {
 
     }
 
+    @Test
+    void sortedSpotsTest(){
+        //Entitymanager
+        EntityManager em = emf.createEntityManager();
+        Timeline timeline = new Timeline();
+        LocalDate ld;
+        int id = 1;
+        em.find(Spot.class, timeline.getId());
+        
+
+        //PSEUDO
+        //Timeline timeline;
+        //int id;
+        //em.find - use timeline id as the given id;
+        //sort from oldest to newest, use LocalDate
+        //expected
+        //actual
+
+        //assertEquals();
+    }
+
 }
