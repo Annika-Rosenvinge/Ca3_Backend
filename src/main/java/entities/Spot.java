@@ -93,6 +93,10 @@ public class Spot  implements Serializable {
         this.timeline = timeline;
     }
 
+    public void removeTimeline(){
+        this.timeline = null;
+    }
+
     @Override
     public String toString() {
         return "Spot{" +

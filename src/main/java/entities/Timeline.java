@@ -131,5 +131,7 @@ public class Timeline implements Serializable {
     }
 
     public void removeSpot(Spot spot) {//skal laves
+        spot.removeTimeline();
+        this.getSpotList().remove(spot);
     }
 }
