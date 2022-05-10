@@ -37,4 +37,11 @@ public class TimelineResource {
         return GSON.toJson(createdTimeline);
 
     }
+    @Path("/delete/{id}")
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    public String deleteTimeline(@PathParam("id")int id){
+        TimelineDTO timelineDeleted = FACADE.deleteTimeline(id);
+        return GSON.toJson(timelineDeleted);
+    }
 }

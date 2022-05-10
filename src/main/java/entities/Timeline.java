@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NamedQueries(@NamedQuery(name = "Timeline.deleteAllRows", query = "DELETE FROM Timeline"))
+
+@NamedQueries({@NamedQuery(name = "Timeline.getAllRows", query = "SELECT t from Timeline t"),
+        @NamedQuery(name = "Timeline.deleteAllRows", query = "DELETE FROM Timeline")
+})
 @Table(name ="Timeline")
 public class Timeline implements Serializable {
     @Id
