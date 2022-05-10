@@ -120,6 +120,7 @@ public class TimelineFacadeTest {
      //  assertEquals(1, timelineFacade.getTimelineCount());
     }
 
+    //Skal reworkes så snart createTimelineTest bliver indkommenteret igen, da det får ID'et til at stige for "user2" og dermed virker den ikke i linje: 129
     @Test
     public void deleteTimeline(){
         List<Role> basic = new ArrayList<>();
