@@ -18,6 +18,7 @@ public class TimelineFacadeTest {
 
     private static EntityManagerFactory emf;
     private static TimelineFacade timelineFacade;
+    Timeline timeline;
 
 
     public TimelineFacadeTest(){
@@ -46,7 +47,7 @@ public class TimelineFacadeTest {
         Location location = new Location("Q1", "La La Land", "Country");
         Location location1 = new Location("Q2", "Ingenmandsland", "Country");
 
-        Timeline timeline = new Timeline("First", "Det her er den første tidslinje",
+        timeline = new Timeline("First", "Det her er den første tidslinje",
                 "1990", "2000", user);
 
         try{
@@ -69,7 +70,7 @@ public class TimelineFacadeTest {
 
 
     @Test
-    //skal rettes til
+    //Virker
     public void createTimelineTest(){
         String name = "New Timeline";
         String description = "The newest timeline";
@@ -117,5 +118,15 @@ public class TimelineFacadeTest {
     @Test
     public void testTimelineCount() throws Exception{
         assertEquals(1, timelineFacade.getTimelineCount());
+    }
+
+    @Test
+    public void editIntervalTest(){
+        Integer id = timeline.getId();
+
+        String expected = "1900" + "2022";
+        String actual = timelineFacade.editInterval(id, "1900", "2022");
+
+        assertEquals(expected,actual);
     }
 }

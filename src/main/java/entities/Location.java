@@ -46,6 +46,11 @@ public class Location implements Serializable {
         this.type = locationDTO.getType();
     }
 
+    public Location(String name, String type) {
+        this.name  = name;
+        this.type = type;
+    }
+
     public String getId() {
         return id;
     }

@@ -2,9 +2,12 @@ package facades;
 
 import dtos.LocationDTO;
 import entities.Location;
+import errorhandling.API_Exception;
+import errorhandling.NotFoundException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 
 public class LocationFacade {
     private static LocationFacade instance;
@@ -24,8 +27,9 @@ public class LocationFacade {
     private EntityManager getEntityManager(){
         return emf.createEntityManager();
     }
-    public LocationDTO createLocation(LocationDTO locationDTO){
-        Location location = new Location(locationDTO.getId(), locationDTO.getName(), locationDTO.getType());
+    //test og endpoint mangler - ed enpoint skal det sættes så det kun er admin der kan
+    public LocationDTO createLocation(String id, String name, String type){
+        Location location = new Location(id, name, type);
         EntityManager em = getEntityManager();
         try{
             em.getTransaction().begin();
@@ -37,4 +41,12 @@ public class LocationFacade {
         }
         return new LocationDTO(location);
     }
+
+    public String deleteLocation(String id) throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Location> query = em.createQuery("DELETE FROM Location l WHERE l.id=:id", Location.class);
+        query.setParameter("id", id);
+        return ("Deleted location with id: " + id);
+    }
+
 }

@@ -30,6 +30,17 @@ public class LocationDTO {
         this.spots = location.getSpotList();
     }
 
+    public LocationDTO(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
+
+    public LocationDTO(String id, String name, String type) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+    }
+
     public static List<LocationDTO> getDtos(List<Location> locations) {
         List <LocationDTO> locationDTOS = new ArrayList<>();
         if (locations != null){

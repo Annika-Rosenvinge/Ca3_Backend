@@ -31,7 +31,7 @@ public class TimelineFacade {
         return emf.createEntityManager();
     }
 
-    //Test er lavet, men skal rettes ind
+    //Test er lavet og virker, men ikke på deployment
     public TimelineDTO createTimeline(TimelineDTO timelineDTO) throws IllegalStateException{
         Timeline timeline = new Timeline(timelineDTO.getName(), timelineDTO.getDescription(), timelineDTO.getStartDate(),
                 timelineDTO.getEndDate(), timelineDTO.getUser());
@@ -85,5 +85,39 @@ public class TimelineFacade {
             em.close();
         }
 
+    }
+
+    //test virker
+    public String editInterval(Integer id, String startDate, String endDate){
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<Timeline> query = em.createQuery("SELECT t FROM Timeline t WHERE t.id = :id", Timeline.class);
+            query.setParameter("id", id);
+            Timeline tm = query.getSingleResult();
+            tm.setStartDate(startDate);
+            tm.setEndDate(endDate);
+            return (tm.getStartDate() + tm.getEndDate());
+        } finally {
+            em.close();
+        }
+        //timelineDTO id
+        //select timeline where id = ?
+        //getStartDate + getEndDate
+        //Tag to nye datoer med
+        //Timeline
+    }
+
+    public TimelineDTO seeTimeline(Integer id){
+        //get the timeline from id with select t from....
+        EntityManager em = emf.createEntityManager();
+        try{
+
+        }
+        finally {
+            em.close();
+        }
+        //set the result to a dto
+        //return th result
+        return null;
     }
 }

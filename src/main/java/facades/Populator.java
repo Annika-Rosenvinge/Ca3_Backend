@@ -37,7 +37,7 @@ public class Populator {
         userFacade.create(new UserDTO(new User("Søren", "password1234", "s.ren@mail.com", basic)));
         //LOCATION
         Location location = new Location("Q889", "Afghanistan", "Country");
-         locationFacade.createLocation(new LocationDTO(location));
+         locationFacade.createLocation(location.getId(), location.getName(),location.getType());
         //TIMELINE
         Timeline timeline = new Timeline("timeline", "first timeline", "1999", "2000", new User(user1));
         timelineFacade.createTimeline(new TimelineDTO(timeline));

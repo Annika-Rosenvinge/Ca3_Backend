@@ -13,12 +13,22 @@ import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class SpotFacadeTest {
 
     private static EntityManagerFactory emf;
     private static SpotFacade spotFacade;
+    static Timeline timeline;
+    static Location location;
+    static Location location1;
+    static Spot spot;
+    static Spot spot1;
+    static User user;
+    static List<Role> basic = new ArrayList<>();
+
+
 
     public SpotFacadeTest() {
 
@@ -38,19 +48,18 @@ public class SpotFacadeTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-
-        List<Role> basic = new ArrayList<>();
         basic.add(new Role("basic"));
-        User user = new User("Hans", "pass", "email1", basic);
 
-        Location location = new Location("Q1", "La La Land", "Country");
-        Location location1 = new Location("Q2", "Ingenmandsland", "Country");
+        user = new User("Hans", "pass", "email1", basic);
 
-        Timeline timeline = new Timeline("First", "Det her er den første tidslinje",
+        location = new Location("Q1", "La La Land", "Country");
+        location1 = new Location("Q2", "Ingenmandsland", "Country");
+
+        timeline = new Timeline("First", "Det her er den første tidslinje",
                 "1990", "2000", user);
-        Spot spot = new Spot("New Years eve", "The night between 1999 and 2000",
+        spot = new Spot("New Years eve", "The night between 1999 and 2000",
                 LocalDate.of(1999, Month.DECEMBER, 31), location, timeline);
-        Spot spot1 = new Spot("Christmas", "",
+        spot1 = new Spot("Christmas", "",
                 LocalDate.of(1999, Month.DECEMBER, 24), location1, timeline);
         try {
             em.getTransaction().begin();
@@ -107,23 +116,45 @@ public class SpotFacadeTest {
 
     @Test
     void sortedSpotsTest(){
-        //Entitymanager
-        EntityManager em = emf.createEntityManager();
-        Timeline timeline = new Timeline();
-        LocalDate ld;
-        int id = 1;
-        em.find(Spot.class, timeline.getId());
-        
+        basic.add(new Role("basic"));
+        TimelineDTO timelineDTO = new TimelineDTO(timeline);
+        List <Spot> spotList = new ArrayList<>();
+        spotList.add(spot1);
+        spotList.add(spot);
+        List<SpotDTO> spots = SpotDTO.getDTOS(spotList);
+        spots.sort(Comparator.comparing(SpotDTO::getTimestamp));
+        List<SpotDTO> expected = new ArrayList<>(spots);
+        List <SpotDTO> actual = spotFacade.timeSortedSpots(timelineDTO);
+        assertEquals(expected.get(0).getName(), actual.get(0).getName());
 
         //PSEUDO
         //Timeline timeline;
         //int id;
-        //em.find - use timeline id as the given id;
+        //use timeline id as the given id;
         //sort from oldest to newest, use LocalDate
         //expected
         //actual
 
         //assertEquals();
+    }
+
+    @Test
+    //virker
+    void seeSpotTest(){
+        Integer id = spot.getId();
+        String name = spot.getName();
+        String description = spot.getDescription();
+        String timeStamp = spot.getTimeStamp().toString();
+        String location = spot.getLocation().toString();
+
+        List<String> expected = new ArrayList<>();
+        expected.add(name);
+        expected.add(description);
+        expected.add(timeStamp);
+        expected.add(location);
+        List<String> actual = spotFacade.seeSpot(id);
+
+        assertEquals(expected, actual);
     }
 
 }

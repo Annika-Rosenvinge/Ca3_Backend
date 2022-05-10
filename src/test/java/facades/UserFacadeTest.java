@@ -59,6 +59,7 @@ public class UserFacadeTest {
         //Remove any data after running each test
     }
 
+    @Disabled
     @Test
     public void testCount() throws Exception{
 
