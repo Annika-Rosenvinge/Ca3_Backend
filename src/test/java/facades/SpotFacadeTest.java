@@ -126,4 +126,22 @@ public class SpotFacadeTest {
         //assertEquals();
     }
 
+    @Test
+    void editSpot() {
+        List<Role> basic = new ArrayList<>();
+        basic.add(new Role("basic"));
+        User user = new User("Hans", "pass", "email1", basic);
+        Location location = new Location("Q1", "La La Land", "Country");
+        Timeline timeline = new Timeline("First", "Det her er den første tidslinje", "1990", "2000", user);
+        Spot spot = new Spot(1,"New Years eve", "The night between 1999 and 2000", LocalDate.of(1999, Month.DECEMBER, 31),
+                location, timeline);
+        SpotDTO es = spotFacade.getSpotById(spot.getId());
+        System.out.println(es);
+        String newEntry = "Christmas eve";
+        SpotDTO newSpotDTO = new SpotDTO(new Spot(spot.getId(), newEntry, spot.getDescription(), spot.getTimeStamp(), spot.getLocation(), spot.getTimeline()));
+        String expected = "Christmas eve";
+        String actual = spotFacade.editSpot(newSpotDTO).getName();
+        assertEquals(expected, actual);
+    }
+
 }

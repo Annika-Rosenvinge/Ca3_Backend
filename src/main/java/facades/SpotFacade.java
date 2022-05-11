@@ -62,6 +62,35 @@ public class SpotFacade {
     * return spot
     * */
 
+    public SpotDTO editSpot(SpotDTO spotDTO) {
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            Spot spot = em.find(Spot.class, spotDTO.getId());
+            spot.setName(spotDTO.getName());
+            spot.setDescription(spotDTO.getDescription());
+            spot.setLocation(spotDTO.getLocation());
+            spot.setTimeStamp(spotDTO.getTimestamp());
+            em.getTransaction().commit();
+            return new SpotDTO(spot);
+        } finally {
+            em.close();
+        }
+    }
+
+    public SpotDTO getSpotById(int id) {
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            Spot spot = em.find(Spot.class, id);
+            em.getTransaction().commit();
+            return new SpotDTO(spot);
+        } finally {
+            em.close();
+        }
+    }
+
+
     public List<SpotDTO> timeSortedSpots(TimelineDTO timelineDTO){
         //Take in timeline ass parameter
         //get timeline id

@@ -41,8 +41,14 @@ public class Spot  implements Serializable {
         this.timeline = timeline;
     }
 
-
-
+    public Spot(Integer id, String name, String description, LocalDate timeStamp, Location location, Timeline timeline) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.timeStamp = timeStamp;
+        this.location = location;
+        this.timeline = timeline;
+    }
 
     //gettere and settere
     public Integer getId() {
